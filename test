@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><title>Test</title></head>
+<body>
+<input id="name" placeholder="اسمك">
+<input id="message" placeholder="رسالة">
+<button onclick="send()">Send</button>
+
+<script>
+function send() {
+  fetch("https://script.google.com/macros/s/AKfycbyh1Wj8HJ7qVypnVXQgvwfOJdMz7CBKj_U26NmMlKOgG-JmnGnzSn6tvycvpClTZZAE_w/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: document.getElementById("name").value,
+      message: document.getElementById("message").value
+    })
+  })
+  .then(res => res.text())
+  .then(data => alert("Response: " + data))
+  .catch(err => alert("ERROR: " + err));
+}
+</script>
+</body>
+</html>
